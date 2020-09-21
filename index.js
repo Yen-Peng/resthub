@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true, useUnifiedTopology: true, socketTimeoutMS: 60000, // Close sockets after 60 seconds of inactivity});
+// Connect to Mongoose and set connection variable, timeout after 1 min of inactivity
+mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true, useUnifiedTopology: true, socketTimeoutMS: 60000});
 
 var db = mongoose.connection;
 
