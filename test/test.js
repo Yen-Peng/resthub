@@ -2,7 +2,7 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../index');
 Contact = require('../contactModel');
-
+let mongoose = require('mongoose');
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -146,5 +146,8 @@ describe('Contacts', () => {
                     });
             });
         });
+    });
+    after((done) => {
+        mongoose.connection.close(done);
     });
 });

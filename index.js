@@ -42,4 +42,14 @@ app.listen(port, function () {
     console.log("Running RestHub on port " + port);
 });
 
+var gracefulExit = function() {
+  db.close(function () {
+    console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
+    process.exit(0);
+  });
+}
+
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
+
 module.exports = app; // for testing
